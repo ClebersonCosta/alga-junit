@@ -12,4 +12,15 @@ class SaudacaoUtilTest {
         assertEquals("Bom dia", saudacao);
     }
 
+    @Test
+    void deveLancarExcecao() {
+        IllegalArgumentException excecao = assertThrows(IllegalArgumentException.class, () -> SaudacaoUtil.saudar(-10));
+        assertEquals("Hora inválida", excecao.getMessage());
+    }
+
+    @Test
+    void naoDeveLancarExcecao() {
+        assertDoesNotThrow(() -> SaudacaoUtil.saudar(0));
+    }
+
 }
