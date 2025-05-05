@@ -35,4 +35,16 @@ class SaudacaoUtilTest {
         assertEquals("Boa noite", saudacao);
     }
 
+    @Test
+    void saudarBomDiaAPartir5h() {
+        String saudacao = SaudacaoUtil.saudar(5);
+        assertEquals("Bom dia", saudacao);
+    }
+
+    @Test
+    void saudarBoaNoiteAs4h() {
+        String saudacao = SaudacaoUtil.saudar(4);
+        assertEquals("Boa noite", saudacao);
+    }
+
 }
