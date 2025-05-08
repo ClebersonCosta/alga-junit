@@ -1,10 +1,12 @@
 package com.algaworks.junit.utilidade;
 
+import org.junit.jupiter.api.DisplayNameGeneration;
+import org.junit.jupiter.api.DisplayNameGenerator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.function.Executable;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class SaudacaoUtilTest {
 
     @Test
@@ -20,7 +22,7 @@ class SaudacaoUtilTest {
     }
 
     @Test
-    void deveLancarExcecao() {
+    void Dado_uma_hora_invalida_Quando_saudar_Entao_deve_lancar_excecao() {
         //Arrange
         int horaInvalida = -10;
 
