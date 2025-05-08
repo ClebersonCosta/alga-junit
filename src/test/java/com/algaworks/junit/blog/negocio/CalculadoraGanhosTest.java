@@ -16,13 +16,13 @@ class CalculadoraGanhosTest {
 
     static CalculadoraGanhos calculadora;
 
-    Post post;
-    Editor autor;
-
     @BeforeAll
     static void beforeAll() {
         calculadora = new CalculadoraGanhos(new ProcessadorTextoSimples(), BigDecimal.TEN);
     }
+
+    Post post;
+    Editor autor;
 
     @BeforeEach
     void beforeEach() {
@@ -41,7 +41,31 @@ class CalculadoraGanhosTest {
 
         //Assert
         assertEquals(new BigDecimal(80), ganhos.getTotalGanho());
+    }
+
+    @Test
+    @DisplayName("Dado um post premium, Quando calcular ganhos, Então deve calcular corretamente a quantidade de palavras")
+    void deveCalcularQuantidadePalavras() {
+        //Arrange
+        autor.setPremium(true);
+
+        //Act
+        Ganhos ganhos = calculadora.calcular(post);
+
+        //Assert
         assertEquals(7, ganhos.getQuantidadePalavras());
+    }
+
+    @Test
+    @DisplayName("Dado um post premium, Quando calcular ganhos, Então deve calcular corretamente o valor pago por palavra")
+    void deveCalcularValorPagoPorPalavra() {
+        //Arrange
+        autor.setPremium(true);
+
+        //Act
+        Ganhos ganhos = calculadora.calcular(post);
+
+        //Assert
         assertEquals(autor.getValorPagoPorPalavra(), ganhos.getValorPagoPorPalavra());
     }
 
@@ -53,7 +77,5 @@ class CalculadoraGanhosTest {
 
         //Assert
         assertEquals(new BigDecimal(70), ganhos.getTotalGanho());
-        assertEquals(7, ganhos.getQuantidadePalavras());
-        assertEquals(autor.getValorPagoPorPalavra(), ganhos.getValorPagoPorPalavra());
     }
 }
